@@ -30,13 +30,11 @@ public class UserRepositoryTest {
         String acntId = "purple";
         String password = "1234";
         String name = "유보라";
-        StatusType status = StatusType.ACTIVE;
         userRepository.save(User.builder()
                 .id(id)
                 .acntId(acntId)
                 .password(password)
                 .name(name)
-                .status(status)
                 .build());
 
         // when

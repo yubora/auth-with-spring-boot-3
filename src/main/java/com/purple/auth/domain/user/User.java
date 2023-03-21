@@ -20,17 +20,17 @@ public class User {
     private String password;
     @Column(length = 20, nullable = false)
     private String name;
-    @Column(columnDefinition = "VARCHAR", length = 10, nullable = false)
+    @Column(columnDefinition = "VARCHAR default 'ACTIVE'", length = 10, nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusType status;
 
     @Builder
-    public User(Long id, String acntId, String password, String name, StatusType status) {
+    public User(Long id, String acntId, String password, String name) {
         this.id = id;
         this.acntId = acntId;
         this.password = password;
         this.name = name;
-        this.status = status;
+        this.status = StatusType.ACTIVE;
     }
 
 

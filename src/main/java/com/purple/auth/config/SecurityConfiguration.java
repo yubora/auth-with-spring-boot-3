@@ -17,9 +17,10 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // @formatter:off
         return http
+                .csrf().disable()
                 .authorizeHttpRequests(authorize -> authorize
                         .shouldFilterAllDispatcherTypes(false)
-                        .requestMatchers("/resources/**", "/login", "/")
+                        .requestMatchers("/resources/**", "/user/**", "/")
                         .permitAll()
                         .anyRequest()
                         .authenticated())
