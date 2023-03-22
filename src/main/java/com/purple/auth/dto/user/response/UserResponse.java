@@ -11,6 +11,7 @@ import lombok.Getter;
 public class UserResponse {
 
     private Long id;
+    private String token;
     private String acntId;
     private String password;
     private String name;

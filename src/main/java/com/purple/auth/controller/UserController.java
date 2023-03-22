@@ -3,6 +3,7 @@ package com.purple.auth.controller;
 import com.purple.auth.domain.user.User;
 import com.purple.auth.dto.user.request.UserRequest;
 import com.purple.auth.dto.user.response.UserResponse;
+import com.purple.auth.security.TokenProvider;
 import com.purple.auth.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
+    private final TokenProvider tokenProvider;
 
     /**
      * 회원가입
@@ -37,8 +39,10 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
 
+        String token = tokenProvider.create(user);
         UserResponse response = UserResponse.builder()
                 .id(user.getId())
+                .token(token)
                 .acntId(user.getAcntId())
                 .password(user.getPassword())
                 .name(user.getName())
